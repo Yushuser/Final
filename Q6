@@ -1,0 +1,29 @@
+To calculate the average turnaround time for these processes using the FCFS scheduling algorithm, we need to first determine the completion time and turnaround time for each process. 
+
+For nonpreemptive FCFS scheduling, the processes are executed in the order in which they arrive. Therefore, we can simply add up the burst times of the processes in the order they arrive to determine their completion times. 
+
+Using this approach, we can calculate the completion times and turnaround times for each process as follows:
+
+Process P1:
+Arrival Time = 0.0
+Burst Time = 8
+Completion Time = 8.0
+Turnaround Time = Completion Time - Arrival Time = 8.0 - 0.0 = 8.0
+
+Process P2:
+Arrival Time = 0.4
+Burst Time = 4
+Completion Time = 12.4
+Turnaround Time = Completion Time - Arrival Time = 12.4 - 0.4 = 12.0
+
+Process P3:
+Arrival Time = 1.0
+Burst Time = 1
+Completion Time = 13.0
+Turnaround Time = Completion Time - Arrival Time = 13.0 - 1.0 = 12.0
+
+The average turnaround time is then the sum of the turnaround times divided by the number of processes:
+
+Average Turnaround Time = (8.0 + 12.0 + 12.0) / 3 = 10.67
+
+Therefore, the average turnaround time for these processes with the FCFS scheduling algorithm is 10.67.

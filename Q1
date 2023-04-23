@@ -1,0 +1,59 @@
+a. What is the content of the matrix Need?
+The matrix Need can be calculated as Max - Allocation:
+Need =
+    0012 0012 0012
+    0750 0606 1002
+    002  002  022
+    020  020  020
+    0002 0642 0642
+b. Is the system in a safe state?
+To check if the system is in a safe state, we can use the banker's algorithm.
+
+First, we need to calculate the Available resources by summing up the Allocation matrix and subtracting it from the Max matrix:
+Available = Max - Allocation =
+           = 1520-0012 1750-0012 2356-0012 0652-0012 0656-0012 
+           = 1508 1738 2344 0640 0644
+Then, we can start by assuming that all the processes can run to completion, and check if we can find a sequence of processes that can run without the system entering an unsafe state.
+We can use the following algorithm:
+
+Initialize Work = Available and Finish[i] = false for all i.
+Find an i such that both:
+a. Finish[i] = false
+b. Need[i] <= Work
+If no such i exists, go to step 4.
+Execute process i by adding its Allocation to Work:
+Work = Work + Allocation[i]
+Finish[i] = true
+Go to step 2.
+If all processes were finished, the system is in a safe state. Otherwise, it is not.
+Using this algorithm, we can start with any process that satisfies the above conditions, and check if we can find a sequence that allows all processes to finish. If we find such a sequence, the system is in a safe state.
+In this case, we can start with P0, since its Need is already satisfied. Then, we can move on to P2, P3, and P1. Finally, we can execute P4. The resulting sequence is:
+P0 -> P2 -> P3 -> P1 -> P4
+Since all processes finish, the system is in a safe state.
+
+c. If a request from thread P1 arrives for (0,4,2,0), can the request be
+granted immediately?
+To check if a request from P1 for (0,4,2,0) can be granted immediately, we can use the banker's algorithm again.
+
+We first need to check if the request is less than or equal to the Need and the Available resources:
+
+Need[P1] = 1000 1750 1002
+Available  = 1508 1738 2344 0640 0644
+Request    = 0000 0004 0002 0000 0000
+
+Need[P1] >= Request: True
+Available >= Request: True
+Since both conditions are satisfied, we can proceed with the request. We can simulate the allocation of the resources and check if the resulting state is safe.
+
+We first update the Allocation and Need matrices for P1:
+
+Allocation[P1] = Allocation[P1] + Request = 1000 1754 1002
+Need[P1] = Need[P1] - Request = 1000 1746 1000
+Then, we check if the resulting state is safe using the banker's algorithm:
+Available = Available - Request = 1508 1734 2342 0640 0644
+
+P0 -> P2 -> P3 -> P4 -> P1
+Since we can find a safe sequence, the request can be granted immediately.
+
+
+
